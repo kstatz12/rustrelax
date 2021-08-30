@@ -1,6 +1,6 @@
 use string_builder::Builder;
 
-#[derive(Debug, PartialEq, Eq, Hash)]
+#[derive(Debug, PartialEq, Eq, Hash, Copy, Clone)]
 pub enum Type {
     Default,
     Thunder,
@@ -8,18 +8,20 @@ pub enum Type {
     CoffeeShop,
 }
 
+#[derive(Copy, Clone, Eq, PartialEq)]
 pub enum Mode {
     Default,
     Loop,
     Single,
 }
 
+#[derive(Copy, Clone, Eq, PartialEq)]
 pub enum PathType {
     Default,
     Testing,
 }
 
-#[derive(Copy, Debug)]
+#[derive(Copy, Clone)]
 pub struct Opts {
     pub sound_type: Type,
     pub mode: Mode,
