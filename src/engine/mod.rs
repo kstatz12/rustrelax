@@ -26,6 +26,16 @@ fn get_sound_path(map: HashMap<Type, &'static str>, opts: Opts) -> &'static str 
 
 fn play(path: &str, opts: Opts) {
     let (_stream, stream_handle) = OutputStream::try_default().unwrap();
+
+    let file = BufReader::new(File::open(path)).unwrap();
+
+    let source = Decoder::new(file).unwrap();
+
+
+    match opts.mode {
+        Mode::Default | Mode::Loop =>  stream_handle.play_raw(source.convert_samples().repeat_infinite()),
+        Mode::Single => stream_handle.play_raw(source.convert_samples()),
+    }
 }
 
 fn get_paths() -> HashMap<Type, &'static str> {

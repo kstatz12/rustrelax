@@ -19,10 +19,11 @@ pub enum PathType {
     Testing,
 }
 
+#[derive(Copy, Debug)]
 pub struct Opts {
     pub sound_type: Type,
     pub mode: Mode,
-    pub path_type: PathType
+    pub path_type: PathType,
 }
 
 pub fn handle_args(args: Vec<String>) -> Option<Opts> {
@@ -56,7 +57,7 @@ fn parse_args<'a>(args: Vec<String>) -> Result<Opts, &'a str> {
     let mut opt = Opts {
         sound_type: Type::Default,
         mode: Mode::Default,
-        path_type: PathType::Default
+        path_type: PathType::Default,
     };
 
     for a in args {
